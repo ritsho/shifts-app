@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,39 @@
     <link rel="stylesheet" href="register-update.css">
     <script src="register-update.js"></script>
 </head>
+
 <body>
-    
+    <form>
+        <fieldset>
+
+            <legend> רישום למערכת </legend>
+
+            <label for="email">אימייל:</label>
+            <input type="email" id="email" required placeholder="הכנס כתובת אימייל"> <br>
+
+            <label for="username">שם משתמש</label>
+            <input type="text" id="username" minlength="6" required placeholder="הזן שם משתמש"><br>
+
+            <label for="password">סיסמה</label>
+            <input type="password" id="password1" minlength="6" required placeholder="הזן סיסמה"><br>
+
+            <label for="password2">חזרה על סיסמה</label>
+            <input type="password" id="password2" minlength="6" required placeholder="הזן סיסמה שנית"><br>
+
+            <label for="firstname">שם פרטי</label>
+            <input type="text" id="firstname" minlength="2" required placeholder="הזן שם פרטי"><br>
+
+            <label for="lastname">שם משפחה</label>
+            <input type="text" id="lastname" minlength="2" required placeholder="הזן שם משפחה"><br>
+
+            <label for="age">גיל</label>
+            <input type="number" id="age" min="18" max="65" required><br>
+
+            <button onclick="register()">רישום</button>
+        </fieldset>
+    </form>
+
+
 </body>
+
 </html>
