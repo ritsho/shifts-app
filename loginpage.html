@@ -2,31 +2,27 @@
 <html lang="he" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loginpage.css">
     <script src="shifts-classes.js"></script>
-
     <script src="loginpage.js"></script>
 
     <title>עמוד כניסה</title>
 </head>
 
 <body>
-    <h1>כניסה</h1>
+    <div class="main">
+        <form>
+            <label aria-hidden="true">כניסה</label>
+            <input type="text" id="username" placeholder="שם משתמש" required="">
+            <input type="password" id="password" placeholder="סיסמה" required="">
 
-    <div>
-        <span>שם משתמש</span>
-        <input type="text" id="username">
+            <div>
+                <button onclick="login()">כניסה</button>
+                <button onclick="signup()">רישום</button>
+            </div>
+        </form>
     </div>
-
-    <div>
-        <span>סיסמה</span>
-        <input type="password" id="password">
-    </div>
-
-    <button onclick="login()">כניסה</button>
-    <button onclick="signup()">רישום</button>
 </body>
 
 </html>

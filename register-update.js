@@ -8,6 +8,7 @@ function containsLetter(str) {
 }
 
 $(document).ready(function () {
+
     $("#register").click(function () {
 
         // לחסום הרצה רגילה של האירוע
@@ -91,5 +92,12 @@ $(document).ready(function () {
 
         // מעבר לעמוד הבית
         window.location.href = "home-page.html";
+    });
+
+    $("#goback").click(function (){
+        // לחסום הרצה רגילה של האירוע
+        event.preventDefault();
+        
+        window.location.href = "loginpage.html";
     });
 })

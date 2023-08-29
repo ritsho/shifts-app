@@ -12,37 +12,23 @@
 </head>
 
 <body>
-    <form>
-        <fieldset>
-
-            <legend> רישום למערכת </legend>
-
-            <label for="email">אימייל:</label>
+    <div class="main">
+        <form>
+            <label aria-hidden="true">טופס הרשמה</label>
             <input type="email" id="email" required placeholder="הכנס כתובת אימייל"> <br>
-
-            <label for="username">שם משתמש</label>
             <input type="text" id="username" minlength="6" required placeholder="הזן שם משתמש"><br>
-
-            <label for="password">סיסמה</label>
             <input type="password" id="password1" minlength="6" required placeholder="הזן סיסמה"><br>
-
-            <label for="password2">חזרה על סיסמה</label>
             <input type="password" id="password2" minlength="6" required placeholder="הזן סיסמה שנית"><br>
-
-            <label for="firstname">שם פרטי</label>
             <input type="text" id="firstname" minlength="2" required placeholder="הזן שם פרטי"><br>
-
-            <label for="lastname">שם משפחה</label>
             <input type="text" id="lastname" minlength="2" required placeholder="הזן שם משפחה"><br>
+            <input type="number" id="age" min="18" max="65" required placeholder="הזן גיל"><br>
 
-            <label for="age">גיל</label>
-            <input type="number" id="age" min="18" max="65" required><br>
-
-            <button id="register">רישום</button>
-        </fieldset>
-    </form>
-
-
+            <div>
+                <button id="register">רישום</button>
+                <button id="goback">חזור</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

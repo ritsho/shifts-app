@@ -1,4 +1,7 @@
 function login() {
+    // לחסום הרצה רגילה של האירוע
+    event.preventDefault();
+
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
@@ -39,6 +42,9 @@ function login() {
 }
 
 function signup() {
+    // לחסום הרצה רגילה של האירוע
+    event.preventDefault();
+
     // לעבור לעמוד הרישום
     window.location.href = "register-update.html";
 }
