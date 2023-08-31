@@ -71,24 +71,11 @@ $(document).ready(function () {
             alert("הגיל צריך להיות בין 18 ל65");
             return;
         }
-
+       
         // ניצור אובייקט של עובד חדש
         let new_emp = new Employee(email, username, password1, firstname, lastname, birthYear);
-        
-        // נטען את המידע השמור בלוקל סטורג
-        let employee_list = JSON.parse(localStorage.getItem("employee_list"));
-        
-        // אם אין שום מידע
-        if (employee_list == null) {
-            employee_list = [];
-        // אם יש מידע - נמיר לרשימה
-        } else {
-            employee_list = employee_list.map(item => new Employee(item.email, item.username, item.password1, item.firstname, item.lastname, item.birthYear));
-        }
-
-
-        employee_list.push(new_emp);
-        localStorage.setItem("employee_list", JSON.stringify(employee_list));
+                
+        localStorage.setItem("user_details", JSON.stringify(new_emp));
 
         // מעבר לעמוד הבית
         window.location.href = "home-page.html";

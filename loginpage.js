@@ -15,21 +15,19 @@ function login() {
         return;
     }
 
-    // להשיג את רשימת המשתמשים
     // נטען את המידע השמור בלוקל סטורג
-    let employee_list = JSON.parse(localStorage.getItem("employee_list"));
-    employee_list = employee_list.map(item => new Employee(item.email, item.username, item.password1, item.firstname, item.lastname, item.birthYear));
+    let user_details = JSON.parse(localStorage.getItem("user_details"));
 
-    const existingEmp = employee_list.find(emp => emp.username == username);
 
     // אם המשתמש לא קיים ברשימה
-    if (!existingEmp) {
-        alert("שם המשתמש לא קיים");
+    if (!user_details) {
+        alert("אין משתמשים רשומים. נא להרשם לאתר");
         return;
     }
     // שם המשתמש קיים, לבדוק את הסיסמה
     else {
-        if (password == existingEmp.password) {
+        let employee = new Employee(user_details.email, user_details.username, user_details.password, user_details.firstname, user_details.lastname, user_details.birthYear);
+        if (password == employee.password) {
             // לשמור מי המשתמש שנכנס למערכת
             localStorage.setItem("active_user", username);
 
