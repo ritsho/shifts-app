@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עמוד הבית</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="shifts-classes.js"></script>
+    <script src="home.js"></script>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">משמרות</a></li>
+                <li><a href="#" disabled>עריכת פרופיל</a></li>
+                <li><a href="add-shift.html">הוספת משמרת</a></li>
+                <li><a href="#" disabled>קורות חיים</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- פרטי המשתמש - צד ימין -->
+    <aside id="right-sidebar">
+        <span>שלום - </span>
+        <span id="user-info"></span>
+        <button id="logout-button">התנתק</button>
+    </aside>
+
+    <main id="main-content">
+        <table >
+            <thead>
+                <tr>
+                    <th>תאריך</th>
+                    <th>שעת התחלה</th>
+                    <th>שעת סיום</th>
+                    <th>שכר שעתי</th>
+                    <th>תפקיד</th>
+                    <th>סניף</th>
+                    <th>שכר כולל למשמרת</th>
+                    <th>-</th>
+                </tr>
+            </thead>
+            <!-- לכאן נוסיף שורות חדשות של משמרות -->
+            <tbody id="shifts-table">
+            </tbody>
+        </table>
+    </main>
+
+    <!-- <footer>
+        <div id="status-bar">
+        </div>
+    </footer> -->
+
+</body>
+
+</html>

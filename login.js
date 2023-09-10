@@ -15,24 +15,30 @@ function login() {
         return;
     }
 
-    // נטען את המידע השמור בלוקל סטורג
-    let user_details = JSON.parse(localStorage.getItem("user_details"));
-
+    // נשיג את רשימת כל המשתמשים
+    let employee_list = getAllEmployees();
+  
+    // אם הרשימה ריקה
+    if (!employee_list) {
+        alert("אין משתמשים רשומים. נא להרשם לאתר");
+        return;
+    }
+    // נחפש את שם המשתמש שהרגע הקלידו, ברשימה
+    const existingEmp = employee_list.find(emp => emp.username == username);
 
     // אם המשתמש לא קיים ברשימה
-    if (!user_details) {
-        alert("אין משתמשים רשומים. נא להרשם לאתר");
+    if (!existingEmp) {
+        alert("אין משתמש רשום בשם זה. נא לבדוק את פרטי הכניסה");
         return;
     }
     // שם המשתמש קיים, לבדוק את הסיסמה
     else {
-        let employee = new Employee(user_details.email, user_details.username, user_details.password, user_details.firstname, user_details.lastname, user_details.birthYear);
-        if (password == employee.password) {
+        if (password == existingEmp.password) {
             // לשמור מי המשתמש שנכנס למערכת
-            localStorage.setItem("active_user", username);
+            localStorage.setItem("active_username", username);
 
             // לפתוח את העמוד הראשי
-            window.location.href = "home-page.html";
+            window.location.href = "home.html";
         } else {
             alert("סיסמה שגויה");
         }
@@ -44,5 +50,5 @@ function signup() {
     event.preventDefault();
 
     // לעבור לעמוד הרישום
-    window.location.href = "register-update.html";
+    window.location.href = "register-user.html";
 }

@@ -74,17 +74,18 @@ $(document).ready(function () {
        
         // ניצור אובייקט של עובד חדש
         let new_emp = new Employee(email, username, password1, firstname, lastname, birthYear);
-                
-        localStorage.setItem("user_details", JSON.stringify(new_emp));
 
-        // מעבר לעמוד הבית
-        window.location.href = "home-page.html";
+        // נשמור ללוקל סטורג
+        new_emp.Save();
+
+        // מעבר לעמוד הכניסה
+        window.location.href = "login.html";
     });
 
     $("#goback").click(function (){
         // לחסום הרצה רגילה של האירוע
         event.preventDefault();
         
-        window.location.href = "loginpage.html";
+        window.location.href = "login.html";
     });
 })
