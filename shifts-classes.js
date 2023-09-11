@@ -9,7 +9,7 @@ class Employee {
         this.cvWorks = cvWorks;
         this.cvEducations = cvEducations;
         this.shifts = shifts.map(s =>
-            new Shift(s.date, s.startHour, s.endHour, s.hourPayment, s.jobType, s.branch, s.mezahe, s.notes));
+            new Shift(s.date, s.startHour, s.endHour, s.hourPayment, s.jobType, s.branch, s.id, s.notes));
     }
 
     CheckDetails() {
@@ -68,27 +68,30 @@ class CV_Education {
 }
 
 class Shift {
-    constructor(date, startHour, endHour, hourPayment, jobType, branch, mezahe, notes) {
+    constructor(date, startHour, endHour, hourPayment, jobType, branch, id, notes) {
         this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
         this.hourPayment = hourPayment;
         this.jobType = jobType;
         this.branch = branch;
-        this.mezahe = mezahe;
+        this.id = id;
         this.notes = notes;
     }
 
     GetTotalPayment() {
         // לחשב כמה משכורת ירוויח העובד מהמשמרת הנוכחית
+        return (this.endHour - this.startHour)*this.hourPayment;
     }
 }
 
 function getAllEmployees() {
+    // משיג את רשימת העובדים
     let employee_list = JSON.parse(localStorage.getItem("employee_list"));
     if (!employee_list) {
         return [];
     }
+    // ממיר את הרשימה לאובייקטים
     employee_list = employee_list.map(item =>
         new Employee(item.email, item.username, item.password,
             item.firstName, item.lastName, item.yearOfBirth,

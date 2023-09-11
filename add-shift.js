@@ -13,7 +13,7 @@ $(document).ready(function () {
         let hour_price = parseInt($("#hour-price").val());
         let job_type = $("#job-type").val();
         let branch = $("#branch").val();
-        let mezahe = $("#mezahe").val();
+        let id = $("#id").val();
         let notes = $("#notes").val();
 
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
         // ניצור אובייקט שמייצג משמרת
         let shift1 = new Shift(shift_date, shift_time_start, shift_time_end,
-            hour_price, job_type, branch, mezahe, notes);
+            hour_price, job_type, branch, id, notes);
 
         // נוסיף למשתמש
         current_user.shifts.push(shift1);

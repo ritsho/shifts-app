@@ -13,25 +13,24 @@
 
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">משמרות</a></li>
-                <li><a href="#" disabled>עריכת פרופיל</a></li>
-                <li><a href="add-shift.html">הוספת משמרת</a></li>
-                <li><a href="#" disabled>קורות חיים</a></li>
-            </ul>
-        </nav>
+        <div class="navbar">
+            <img class="logo" src="shifts-logo.png" />
+            <a href="#">משמרות</a>
+            <a href="#" class="disabled">עריכת פרופיל</a>
+            <a href="add-shift.html">הוספת משמרת</a>
+            <a href="#" class="disabled">קורות חיים</a>
+        </div>
     </header>
 
     <!-- פרטי המשתמש - צד ימין -->
-    <aside id="right-sidebar">
+    <div id="right-sidebar">
         <span>שלום - </span>
         <span id="user-info"></span>
         <button id="logout-button">התנתק</button>
-    </aside>
+    </div>
 
     <main id="main-content">
-        <table >
+        <table>
             <thead>
                 <tr>
                     <th>תאריך</th>
@@ -41,19 +40,29 @@
                     <th>תפקיד</th>
                     <th>סניף</th>
                     <th>שכר כולל למשמרת</th>
-                    <th>-</th>
+                    <th> </th>
                 </tr>
             </thead>
             <!-- לכאן נוסיף שורות חדשות של משמרות -->
             <tbody id="shifts-table">
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="total-money"></td>
+                </tr>
+            </tfoot>
         </table>
     </main>
 
-    <!-- <footer>
-        <div id="status-bar">
-        </div>
-    </footer> -->
+    <footer class="footer-buttons">
+        <button id="add-shift-button">הוספת משמרת</a>
+    </footer>
 
 </body>
 

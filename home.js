@@ -1,7 +1,12 @@
+let active_username = localStorage.getItem("active_username");
+
 $(document).ready(function () {
-    let active_username = localStorage.getItem("active_username");
     $("#user-info").text(active_username);
 
+    $("#add-shift-button").click(function () {
+        // עבור לעמוד הוספת משמרת
+        window.location.href = "add-shift.html";
+    });
 
     $("#logout-button").click(function () {
         // ניקוי המשתמש הנוכחי 
@@ -16,6 +21,7 @@ $(document).ready(function () {
     const existing_emp = findEmployee(active_username);
     const shift_table = $("#shifts-table");
 
+    let total_money = 0;
     // למלא את רשימת כל המשמרות של המשתמש
     existing_emp.shifts.forEach(shift => {
         const row = $("<tr>");
@@ -25,13 +31,27 @@ $(document).ready(function () {
         row.append(`<td>${shift.hourPayment} ₪</td>`);
         row.append(`<td>${shift.jobType}</td>`);
         row.append(`<td>${shift.branch}</td>`);
-        row.append(`<td>${shift.mezahe}</td>`);
-        row.append(`<td>${shift.notes}</td>`);
-        row.append(`<button>מחק</td>`);
-        row.append(`<button>עדכון</td>`);
+        row.append(`<td>${shift.GetTotalPayment()} ₪</td>`);
+        row.append(`<button onclick="deleteShift(${shift.id})">מחק</td>`);
+        row.append(`<button onclick="editShift(${shift.id})">עדכון</td>`);
 
         shift_table.append(row);
-    })
+        total_money += shift.GetTotalPayment();
+    });
 
+    $("#total-money").text(total_money + " ₪");
 
 });
+
+function deleteShift(id) {
+    let res = confirm("האם את.ה רוצה למחוק את משמרת " + id);
+    if (res) {
+        // למצוא את העובד הנוכחי
+        const employee = findEmployee(active_username);
+
+        // לסנן החוצה את המשמרת הספציפית שצריך למחוק
+        employee.shifts = employee.shifts.filter(s => s.id !== id);
+        employee.Save();
+    }
+}
+

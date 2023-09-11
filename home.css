@@ -10,36 +10,49 @@ header {
     text-align: center;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.logo{
+    height: 100px;
+    text-align: right;
+    vertical-align: middle;
 }
 
-li {
-    display: inline;
-    margin-right: 10px;
-    font-size: small;
+
+.navbar {
+    background-color:  #573b8a;;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
 }
 
-a:hover {
-    font-weight: bold;
-    color: darkblue;
-}
-
-a {
+.navbar a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    color: darkblue;
 }
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar a.disabled {
+    text-decoration: line-through; /* Apply strikethrough to disabled links */
+    pointer-events: none; /* Disable click events on the disabled links */
+    color: #999; /* Color for disabled links */
+}
+
 
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
-th,td {
-    border: 1px solid #ccc;
+th,
+td {
+    border: 1px solid #767676;
     padding: 10px;
     text-align: left;
 }
@@ -60,4 +73,20 @@ th {
 th,
 td {
     text-align: center;
+}
+
+#right-sidebar{
+	margin: 16px;
+}
+
+#total-money{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.footer-buttons{
+    text-align: center;
+}
+#add-shift-button{
+    font-size: x-large;
 }
