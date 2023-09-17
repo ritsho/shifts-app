@@ -28,9 +28,29 @@ $(document).ready(function () {
         let id = $("#id").val();
         let notes = $("#notes").val();
 
+        if (!shift_date || !shift_time_end || !shift_time_start){
+            alert("נא לכתוב תאריך וזמן התחלה וסיום");
+            return;
+        }
 
         if (shift_time_end < shift_time_start) {
             alert("זמן התחלה חייב להיות לפני זמן סיום");
+            return;
+        }
+        if (!hour_price){
+            alert("יש להזין שכר שעתי");
+            return;
+        }
+        if (!job_type){
+            alert("יש להזין תפקיד");
+            return;
+        }
+        if (!branch){
+            alert("יש להזין סניף");
+            return;
+        }
+        if (!id){
+            alert("יש להזין מזהה");
             return;
         }
 

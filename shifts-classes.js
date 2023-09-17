@@ -1,5 +1,5 @@
 class Employee {
-    constructor(email, username, password, firstName, lastName, yearOfBirth, shifts, cvWorks = [], cvEducations = []) {
+    constructor(email, username, password, firstName, lastName, yearOfBirth, shifts = [], cvWorks = [], cvEducations = []) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -18,25 +18,27 @@ class Employee {
 
     Save() {
 
-        // נטען את רשימת כל המשתמשים השמורים בלוקל סטורג
-        let employee_list = getAllEmployees();
-        const existing_user = findEmployee(this.username);
+        const exisingEmp = findEmployee(this.username);
 
-        if (!existing_user) {
-            // נוסיף את העובד החדש לרשימה
-            employee_list.push(this);
+        // אם המשתמש לא קיים כבר
+        if (exisingEmp == null) {
+            // נשמור אותו בצורה רגילה
+            localStorage.setItem(this.username, JSON.stringify(this));
         }
+        // אם המשתמש קיים
         else {
+            // אם המשתמש קיים אבל יש לו סיסמה אחרת, לא נאפשר שמירה
+            if (exisingEmp.password != this.password) {
+                alert(" לא ניתן לשנות סיסמה בעזרת רישום חדש");
+            }
+            // אם המשתמש קיים - עם אותה סיסמה
+            else {
+                // נשמור את כל הפרטים
+                localStorage.setItem(this.username, JSON.stringify(this));
+            }
 
-            // נסיר את העובד הנוכחי מהרשימה כי יש שם את המידע הישן
-            employee_list = employee_list.filter(emp => emp.username !== this.username);
-
-            // נוסיף את העובד הנוכחי עם המידע החדש לרשימה
-            employee_list.push(this);
         }
 
-        // נשמור את הרשימה ללוקל סטורג
-        localStorage.setItem("employee_list", JSON.stringify(employee_list));
     }
 }
 
@@ -81,34 +83,27 @@ class Shift {
 
     GetTotalPayment() {
         // לחשב כמה משכורת ירוויח העובד מהמשמרת הנוכחית
-        return (this.endHour - this.startHour)*this.hourPayment;
+        return (this.endHour - this.startHour) * this.hourPayment;
     }
 }
 
-function getAllEmployees() {
-    // משיג את רשימת העובדים
-    let employee_list = JSON.parse(localStorage.getItem("employee_list"));
-    if (!employee_list) {
-        return [];
-    }
-    // ממיר את הרשימה לאובייקטים
-    employee_list = employee_list.map(item =>
-        new Employee(item.email, item.username, item.password,
-            item.firstName, item.lastName, item.yearOfBirth,
-            item.shifts, item.cvWorks, item.cvEducations));
-    return employee_list;
-}
+function findEmployee(employeeName) {
 
-function findEmployee(userName) {
-    let employee_list = getAllEmployees();
-    if (!employee_list) {
+    let existingEmp = localStorage.getItem(employeeName);
+    if (!existingEmp) {
         return null;
     }
 
-    // למצוא את האובייקט של המשתמש הנוכחי
-    const current_user = employee_list.find(emp => emp.username == userName);
-    return current_user;
+    // נשיג את האוביקט ג'ייסון מהלוקל סטורג
+    let employeeJson = JSON.parse(existingEmp);
+
+    // נמיר אותו לקלאס
+    let employeeClass = new Employee(employeeJson.email, employeeJson.username, employeeJson.password,
+        employeeJson.firstName, employeeJson.lastName, employeeJson.yearOfBirth,
+        employeeJson.shifts, employeeJson.cvWorks, employeeJson.cvEducations);
+
+    return employeeClass;
 }
 
-var CITIES_LIST = ["אילת", "בני ברק", "חיפה", "ירושלים", "נתניה", "רחובות", "תל אביב"];
-var JOB_TYPES_LIST = ["מנהלת","מנכלית","מזכירה","מנהל חשבונות","רופאה בכירה","מנתחת","מתכנתת","מומחית סייבר"];
+var CITIES_LIST = ["אילת", "ראש העין", "בני ברק", "חיפה", "ירושלים", "נתניה", "רחובות", "תל אביב"];
+var JOB_TYPES_LIST = ["מנהלת", "מנכלית", "מזכירה", "מנהל חשבונות", "רופאה בכירה", "מנתחת", "מתכנתת", "מומחית סייבר"];

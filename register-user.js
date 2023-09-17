@@ -78,6 +78,8 @@ $(document).ready(function () {
         // נשמור ללוקל סטורג
         new_emp.Save();
 
+        alert("פרטי המשתמש נשמרו בהצלחה");
+        
         // מעבר לעמוד הכניסה
         window.location.href = "login.html";
     });

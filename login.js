@@ -15,25 +15,17 @@ function login() {
         return;
     }
 
-    // נשיג את רשימת כל המשתמשים
-    let employee_list = getAllEmployees();
-  
-    // אם הרשימה ריקה
-    if (!employee_list) {
-        alert("אין משתמשים רשומים. נא להרשם לאתר");
-        return;
-    }
-    // נחפש את שם המשתמש שהרגע הקלידו, ברשימה
-    const existingEmp = employee_list.find(emp => emp.username == username);
+    // נחפש את שם המשתמש כמפתח בלוקל סטורג
+    const existing_emp = findEmployee(username);
 
     // אם המשתמש לא קיים ברשימה
-    if (!existingEmp) {
+    if (existing_emp == null) {
         alert("אין משתמש רשום בשם זה. נא לבדוק את פרטי הכניסה");
         return;
     }
     // שם המשתמש קיים, לבדוק את הסיסמה
     else {
-        if (password == existingEmp.password) {
+        if (password == existing_emp.password) {
             // לשמור מי המשתמש שנכנס למערכת
             localStorage.setItem("active_username", username);
 
