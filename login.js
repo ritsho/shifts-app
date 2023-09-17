@@ -37,8 +37,8 @@ function login() {
             // לשמור מי המשתמש שנכנס למערכת
             localStorage.setItem("active_username", username);
 
-            // לפתוח את העמוד הראשי
-            window.location.href = "home.html";
+            // לפתוח את העמוד הראשי ולהציג פרטים רק של המשתמש הנוכחי
+            window.location.href = "home.html?userName=" + username;
         } else {
             alert("סיסמה שגויה");
         }

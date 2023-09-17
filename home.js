@@ -1,7 +1,6 @@
 let active_username = localStorage.getItem("active_username");
 
 $(document).ready(function () {
-    $("#user-info").text(active_username);
 
     $("#add-shift-button").click(function () {
         // עבור לעמוד הוספת משמרת
@@ -14,11 +13,14 @@ $(document).ready(function () {
 
         // חזרה לעמוד הכניסה
         window.location.href = "login.html";
-
     });
 
     // להשיג את המשתמש הנוכחי
-    const existing_emp = findEmployee(active_username);
+    const urlParams = new URLSearchParams(window.location.search);
+	const userName = urlParams.get('userName');
+    $("#user-info").text(userName);
+
+    const existing_emp = findEmployee(userName);
     const shift_table = $("#shifts-table");
 
     let total_money = 0;

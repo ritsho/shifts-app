@@ -109,3 +109,6 @@ function findEmployee(userName) {
     const current_user = employee_list.find(emp => emp.username == userName);
     return current_user;
 }
+
+var CITIES_LIST = ["אילת", "בני ברק", "חיפה", "ירושלים", "נתניה", "רחובות", "תל אביב"];
+var JOB_TYPES_LIST = ["מנהלת","מנכלית","מזכירה","מנהל חשבונות","רופאה בכירה","מנתחת","מתכנתת","מומחית סייבר"];

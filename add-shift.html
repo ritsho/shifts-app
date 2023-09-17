@@ -13,23 +13,16 @@
 <body>
     <div class="main">
         <form>
-            <datalist id="snifim">
-                <option value="אילת">
-                <option value="בני ברק">
-                <option value="חיפה">
-                <option value="ירושלים">
-                <option value="נתניה">
-                <option value="רחובות">
-                <option value="תל אביב">
-            </datalist>
+            <datalist id="snifim"></datalist>
+            <datalist id="job-types"></datalist>
 
             <label aria-hidden="true">הוספת משמרת</label>
             <input type="date" id="shift-date" placeholder="תאריך" required="">
-            <input type="number" id="shift-time-start" placeholder="שעת התחלה" required="" min="0" max="24">
-            <input type="number" id="shift-time-end" placeholder="שעת סיום" required="" min="0" max="24">
+            <input type="time" id="shift-time-start" placeholder="שעת התחלה" required="" step="3600">
+            <input type="time" id="shift-time-end" placeholder="שעת סיום" required="" step="3600">
             <input type="number" id="hour-price" placeholder="שכר שעתי" required="">
             <input type="text" id="branch" placeholder="סניף" required="" list="snifim">
-            <input type="text" id="job-type" placeholder="תפקיד" required="">
+            <input type="text" id="job-type" placeholder="תפקיד" required="" list="job-types">
             <input type="text" id="id" placeholder="מזהה משמרת" required="">
             <input type="text" id="notes" placeholder="הערות">
             <div>
