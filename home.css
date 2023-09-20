@@ -90,3 +90,8 @@ td {
 #add-shift-button{
     font-size: x-large;
 }
+
+#filterJobs, #filterBranches{
+    background-color: black;
+    color: white;
+}
