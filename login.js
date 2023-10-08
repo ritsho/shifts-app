@@ -30,11 +30,21 @@ function login() {
             localStorage.setItem("active_username", username);
 
             // לפתוח את העמוד הראשי ולהציג פרטים רק של המשתמש הנוכחי
-            window.location.href = "home.html?userName=" + username;
+            navigateWithTransition("home.html?userName=" + username);
         } else {
             alert("סיסמה שגויה");
         }
     }
+}
+
+function navigateWithTransition(url) {
+    // הוספת אפקט לפני מעבר לדף הבא
+    document.body.classList.add("fade-out");
+
+    // לאחר זמן נתון (שניה) עבור לדף הבא
+    setTimeout(() => {
+        window.location.href = url;
+    }, 500); 
 }
 
 function signup() {
@@ -42,5 +52,5 @@ function signup() {
     event.preventDefault();
 
     // לעבור לעמוד הרישום
-    window.location.href = "register-user.html";
+    navigateWithTransition("register-user.html");
 }

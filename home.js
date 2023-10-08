@@ -1,5 +1,16 @@
 let active_username = localStorage.getItem("active_username");
 
+
+function navigateWithTransition(url) {
+    // הוספת אפקט לפני מעבר לדף הבא
+    document.body.classList.add("fade-out");
+
+    // לאחר זמן נתון (שניה) עבור לדף הבא
+    setTimeout(() => {
+        window.location.href = url;
+    }, 500); 
+}
+
 function displayAllShifts() {
 
     // להשיג את המשתמש הנוכחי
@@ -7,6 +18,14 @@ function displayAllShifts() {
     const userName = urlParams.get('userName');
     const selectedJob = urlParams.get('selectedJob');
     const selectedBranch = urlParams.get('selectedBranch');
+
+    // אם הגענו לעמוד בלי פרטי שם משתמש
+    if (userName == "" || userName == null){
+        // נחזור לעמוד הכניסה
+        navigateWithTransition("login.html");
+        return;
+    }
+
     $("#user-info").text(userName);
 
     const existing_emp = findEmployee(userName);
@@ -28,8 +47,10 @@ function displayAllShifts() {
             row.append(`<td>${shift.jobType}</td>`);
             row.append(`<td>${shift.branch}</td>`);
             row.append(`<td>${shift.GetTotalPayment()} ₪</td>`);
-            row.append(`<button onclick="deleteShift(${shift.id})">מחק</td>`);
-            row.append(`<button onclick="editShift(${shift.id})">עדכון</td>`);
+            row.append(`<td>
+                            <button onclick="deleteShift(${shift.id})">מחק</button>
+                            <button onclick="editShift(${shift.id})">עדכון</button>
+                        </td>`);
 
             shift_table.append(row);
             total_money += shift.GetTotalPayment();
@@ -73,9 +94,9 @@ function displayAllShifts() {
 
 $(document).ready(function () {
 
-    $("#add-shift-button").click(function () {
+    $(".add-shift-button").click(function () {
         // עבור לעמוד הוספת משמרת
-        window.location.href = "add-shift.html";
+        navigateWithTransition("add-shift.html");
     });
 
     $("#logout-button").click(function () {
@@ -83,7 +104,7 @@ $(document).ready(function () {
         localStorage.setItem("active_username", "");
 
         // חזרה לעמוד הכניסה
-        window.location.href = "login.html";
+        navigateWithTransition("login.html");
     });
 
     $('#filterJobs').change(function () {
@@ -92,9 +113,10 @@ $(document).ready(function () {
         const selectedBranch = urlParams.get('selectedBranch');
         const selectedJob = $(this).val()
 
-        window.location.href = "home.html?userName=" + userName +
+        let newUrl = "home.html?userName=" + userName +
             "&selectedJob=" + selectedJob +
             "&selectedBranch=" + selectedBranch;
+        navigateWithTransition(newUrl);
     });
 
     $('#filterBranches').change(function () {
@@ -103,9 +125,10 @@ $(document).ready(function () {
         const selectedJob = urlParams.get('selectedJob');
         const selectedBranch = $(this).val();
 
-        window.location.href = "home.html?userName=" + userName +
+        let newUrl = "home.html?userName=" + userName +
             "&selectedJob=" + selectedJob +
             "&selectedBranch=" + selectedBranch;
+        navigateWithTransition(newUrl);
     });
 
     displayAllShifts();
